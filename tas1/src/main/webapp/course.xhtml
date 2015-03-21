@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+		<h:form id="create">
+			<h2>Establish a new course</h2>
+			<h:panelGrid columns="3" columnClasses="titleCell">
+				<h:outputLabel for="courseName" value="Course Name*:" />
+				<h:inputText id="courseName" value="#{newCourse.courseName}" />
+				<h:message for="courseName" errorClass="invalid" />
+			</h:panelGrid>
+			<p>
+				<h:panelGrid columns="2">
+					<h:commandButton id="create"
+						action="#{courseController.merge}" value="Create"
+						styleClass="register" />
+					
+					<h:messages styleClass="messages" errorClass="invalid"
+						infoClass="valid" warnClass="warning" globalOnly="true" />
+				</h:panelGrid>
+			</p>
+		</h:form>
+
+		<h2>List of course</h2>
+		<h:panelGroup rendered="#{empty courses}">
+			<em>No registered courses.</em>
+		</h:panelGroup>
+		<h:dataTable var="_course" value="#{courses}"
+			rendered="#{not empty courses}" styleClass="simpletablestyle">
+			<h:column>
+				<f:facet name="header">Course Name</f:facet>
+                #{_course.courseName}
+            </h:column>
+		</h:dataTable>
+	</ui:define>
+</ui:composition>

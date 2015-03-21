@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib">
+	<ui:define name="content">
+		<h:form id="reg">
+			<h2>Input Timesheet</h2>
+			
+			<h:panelGrid columns="3" columnClasses="titleCell">
+
+				<h:outputLabel for="userId" value="User Id: " />
+				<h:inputText id="userId" value="#{newtimesheet.userId}" />
+				<h:message for="userId" errorClass="invalid" />
+
+				<h:outputLabel for="course" value="Course: " />
+				<h:inputText id="course" value="#{newtimesheet.courseName}">
+				</h:inputText>
+				<h:message for="course" errorClass="invalid" />
+					
+<!-- 				<h:selectOneListbox value="#{newtimesheet.userId}" id="userList">  -->
+<!-- 				converter="userKeyConverter" -->
+				
+<!-- 		   			<f:selectItems value="#{users}" var="user" itemLabel="#{user.userId}" itemValue="#{user.userId}">  -->
+<!-- 		   			converter="userKeyConverter"> -->
+
+<!-- 		   			</f:selectItems> -->
+<!-- 		   		</h:selectOneListbox> -->
+
+				<h:outputLabel for="startDateTime" value="Start:" />
+				<h:inputText id="startDateTime" value="#{newtimesheet.startDateTime}" >
+					<f:convertDateTime pattern="dd-mm-yyyy" />
+				</h:inputText>
+				<h:message for="startDateTime" errorClass="invalid" />
+
+				<h:outputLabel for="endDateTime" value="End:" />
+				<h:inputText id="endDateTime" value="#{newtimesheet.endDateTime}" >
+					<f:convertDateTime pattern="dd-mm-yyyy" />
+				</h:inputText>
+				<h:message for="endDateTime" errorClass="invalid" />
+
+			</h:panelGrid>
+
+			<p>
+				<h:panelGrid columns="2">
+					
+					<h:commandButton id="update"
+						action="#{timesheetController.merge}" value="Update"
+						styleClass="register" />
+					
+					<h:commandButton id="delete"
+						action="#{timesheetController.delete}" value="Delete"
+						styleClass="register" />
+					
+					
+					<h:messages styleClass="messages" errorClass="invalid"
+						infoClass="valid" warnClass="warning" globalOnly="true" />
+				</h:panelGrid>
+			</p>
+		</h:form>
+
+
+		<h2>Timesheet</h2>
+		<h:panelGroup rendered="#{empty timesheets}">
+			<em>No record found.</em>
+		</h:panelGroup>
+		<h:dataTable var="_timesheet" value="#{timesheets}"
+			rendered="#{not empty timesheets}" styleClass="simpletablestyle">
+			<h:column>
+				<f:facet name="header">User Id</f:facet>
+                #{_timesheet.userId}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Course</f:facet>
+                #{_timesheet.courseName}
+            </h:column>
+            <h:column>
+				<f:facet name="header">Start Date Time</f:facet>
+                #{_timesheet.startDateTime}
+            </h:column>
+            <h:column>
+				<f:facet name="header">End Date Time</f:facet>
+                #{_timesheet.endDateTime}
+            </h:column>
+		</h:dataTable>
+
+	</ui:define>
+
+</ui:composition>
