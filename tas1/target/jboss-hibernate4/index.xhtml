@@ -21,12 +21,6 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
-		<h1>Welcome to JBoss2!</h1>
-
-		<div>
-			<p>You have successfully deployed a Java EE 6 web application.</p>
-		</div>
-
 		<h:form id="reg">
 			<h2>Member Registration</h2>
 			<p>Demonstrates quickstart application for Hibernate using Jboss
@@ -90,9 +84,19 @@
 		<h:form id="reg3">
 			<h2>Member Role Registration</h2>
 			<h:panelGrid columns="3" columnClasses="titleCell">
-				<h:outputLabel for="memberRoleName" value="Member Role Name" />
-				<h:inputText id="memberRoleName" value="#{newMemberRole.name}" />				
+				<h:outputLabel for="memberRoleId" value="Member Role ID" />
+				<h:inputText id="memberRoleId" value="#{newMemberRole.id}" />				
 				<h:message for="memberRole" errorClass="invalid" />
+				
+				<h:outputLabel for="memberRoleName" value="Member Role Name" />
+				<h:inputText id="memberRoleName" value="#{newMemberRole.roleBkup.name}" />				
+				<h:message for="memberRole" errorClass="invalid" />
+				
+				<h:outputLabel for="memberRoleDesc" value="Member Role Desc" />
+				<h:inputText id="memberRoleDesc" value="#{newMemberRole.roleBkup.desc}" />				
+				<h:message for="memberRole" errorClass="invalid" />
+								
+				
 			</h:panelGrid>
 
 			<p>
@@ -156,21 +160,18 @@
 			rendered="#{not empty memberRoles}" styleClass="simpletablestyle">
 			<h:column>
 				<f:facet name="header">name</f:facet>
-                #{_memberRole.name}
+                #{_memberRole.id}
             </h:column>
             <h:column>
 				<f:facet name="header">name</f:facet>
-                #{_memberRole.name.name}
+                #{_memberRole.roleBkup.name}
             </h:column>
             <h:column>
 				<f:facet name="header">name</f:facet>
-                #{_memberRole.name.desc}
+                #{_memberRole.roleBkup.desc}
             </h:column>
 		</h:dataTable>
 
 	</ui:define>
 
-	<ui:define name="content2">
-		<h1>Welcome to JBoss!</h1>
-	</ui:define>
 </ui:composition>

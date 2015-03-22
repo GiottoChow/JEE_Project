@@ -4,6 +4,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
 		<h:form id="create">
@@ -11,45 +12,52 @@
 			<h:panelGrid columns="1" columnClasses="titleCell">
 
 				<h:outputLabel for="userId" value="User Id*:" />
-				<h:inputText id="userId" value="#{newUser.userId}" />
+				<h:inputText id="userId" value="#{newUser.userId}">
+					<f:validateRequired />
+				</h:inputText>
 				<h:message for="userId" errorClass="invalid" />
 
 				<h:outputLabel for="alias" value="Alias:" />
-				<h:inputText id="alias" value="#{newUser.alias}" />
+				<h:inputText id="alias" value="#{newUser.alias}">
+				</h:inputText>
 				<h:message for="alias" errorClass="invalid" />
 
 				<h:outputLabel for="role" value="Role*:" />
-				<h:inputText id="role" value="#{newUser.roleId}" />
+				<h:inputText id="role" value="#{newUser.roleId}">
+					<f:validateRequired />
+				</h:inputText>
 				<h:message for="role" errorClass="invalid" />
 
 				<h:outputLabel for="passwd" value="Password*:" />
-				<h:inputText id="passwd" value="#{newUser.passwd}" />
+				<h:inputSecret id="passwd" value="#{newUser.passwd}">
+					<f:validateRequired />
+				</h:inputSecret>
 				<h:message for="passwd" errorClass="invalid" />
 
-				<h:outputLabel for="mobile" value="Mobile:" />
+				<h:outputLabel for="mobile" value="Mobile:*" />
 				<h:inputText id="mobile" value="#{newUser.mobile}" />
 				<h:message for="mobile" errorClass="invalid" />
 
-				<h:outputLabel for="email" value="Email:" />
-				<h:inputText id="email" value="#{newUser.email}" />
+				<h:outputLabel for="email" value="Email:*" />
+				<h:inputText id="email" p:type="email" value="#{newUser.email}" />
+
 				<h:message for="email" errorClass="invalid" />
 
-<!-- 				<h:outputLabel for="inactiveDate" value="inactiveDate:" /> -->
-<!-- 				<h:inputText id="inactiveDate" value="#{newUser.inactiveDate}" /> -->
-<!-- 				<h:message for="inactiveDate" errorClass="invalid" /> -->
+				<!-- 				<h:outputLabel for="inactiveDate" value="inactiveDate:" /> -->
+				<!-- 				<h:inputText id="inactiveDate" value="#{newUser.inactiveDate}" /> -->
+				<!-- 				<h:message for="inactiveDate" errorClass="invalid" /> -->
 
-<!-- 				<h:outputLabel for="loginTrial" value="loginTrial:" /> -->
-<!-- 				<h:inputText id="loginTrial" value="#{newUser.loginTrial}" /> -->
-<!-- 				<h:message for="loginTrial" errorClass="invalid" /> -->
+				<!-- 				<h:outputLabel for="loginTrial" value="loginTrial:" /> -->
+				<!-- 				<h:inputText id="loginTrial" value="#{newUser.loginTrial}" /> -->
+				<!-- 				<h:message for="loginTrial" errorClass="invalid" /> -->
 
 			</h:panelGrid>
 
 			<p>
 				<h:panelGrid columns="2">
-					<h:commandButton id="create"
-						action="#{userController.create}" value="Create"
-						styleClass="register" />
-					
+					<h:commandButton id="create" action="#{userController.merge}"
+						value="Create" styleClass="register" />
+
 					<h:messages styleClass="messages" errorClass="invalid"
 						infoClass="valid" warnClass="warning" globalOnly="true" />
 				</h:panelGrid>
@@ -75,19 +83,19 @@
 				<f:facet name="header">Role</f:facet>
                 #{_user.roleId}
             </h:column>
-            <h:column>
+			<h:column>
 				<f:facet name="header">Login Trail</f:facet>
                 #{_user.loginTrial}
             </h:column>
-            <h:column>
+			<h:column>
 				<f:facet name="header">Mobile</f:facet>
                 #{_user.mobile}
             </h:column>
-            <h:column>
+			<h:column>
 				<f:facet name="header">Email</f:facet>
                 #{_user.email}
             </h:column>
-            <h:column>
+			<h:column>
 				<f:facet name="header">Inactive Date</f:facet>
                 #{_user.inactiveDate}
             </h:column>
