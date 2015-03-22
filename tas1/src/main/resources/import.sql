@@ -16,7 +16,14 @@
 --
 
 -- You can use this file to load seed data into the database using SQL statements
-insert into MemberHibernate4Demo (myId, name, email, phone_number, address) values (0, 'John Smith', 'john.smith@mailinator.com', '2125551212', 'Boston NY') 
-insert into MemberHibernate4Demo (myId, name, email, phone_number, address) values (1, 'Madhumita Sadhukhan', 'msadhukh@gmail.com', '2135551214', 'Brno CZ') 
-insert into Role(name,desc) values ('admin','test')
+--insert into MemberHibernate4Demo (myId, name, email, phone_number, address) values (0, 'John Smith', 'john.smith@mailinator.com', '2125551212', 'Boston NY') 
+--insert into MemberHibernate4Demo (myId, name, email, phone_number, address) values (1, 'Madhumita Sadhukhan', 'msadhukh@gmail.com', '2135551214', 'Brno CZ') 
+--insert into Role(name,desc) values ('admin','test')
 -- insert into MemberRole(name_name) values ('admin');
+
+insert into Course values ('A');
+insert into Course values ('B');
+insert into Course values ('C');
+insert into User values ('Admin','Administrator','user@giotto-PC',null, 0, '1212121212121', 'password','Admin');
+insert into User values ('Admin1','Administrator','user@giotto-PC',null, 0, '1212121212121', 'password','Admin');
+insert into User values ('Admin2','Administrator','user@giotto-PC',null, 0, '1212121212121', 'password','Admin');
