@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss:jboss-web version="6.0"
+	xmlns:javaee="http://java.sun.com/xml/ns/javaee" xmlns:jboss="http://www.jboss.com/xml/ns/javaee"
+	xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jboss.com/xml/ns/javaee jboss-web_6_0.xsd "
+>
+	<jboss:context-root>/</jboss:context-root>
+<!--  	<jboss:virtual-host>www.404notfounddrivingschool.com</jboss:virtual-host> -->
+
+<!-- 	<servlet-mapping> -->
+<!--         <servlet-name>default</servlet-name> -->
+<!--         <url-pattern>/</url-pattern> -->
+<!--     </servlet-mapping> -->
+    
+<!--     <servlet> -->
+<!--         <servlet-name>default</servlet-name> -->
+<!--         <servlet-class> -->
+<!--           org.apache.catalina.servlets.DefaultServlet -->
+<!--         </servlet-class> -->
+<!--         <init-param> -->
+<!--             <param-name>debug</param-name> -->
+<!--             <param-value>0</param-value> -->
+<!--         </init-param> -->
+<!--         <init-param> -->
+<!--             <param-name>listings</param-name> -->
+<!--             <param-value>true</param-value> -->
+<!--         </init-param> -->
+<!--         <load-on-startup>1</load-on-startup> -->
+<!--     </servlet> -->
+</jboss:jboss-web>
