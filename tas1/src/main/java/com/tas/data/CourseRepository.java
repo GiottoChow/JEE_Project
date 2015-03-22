@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import com.tas.model.Course;
 
@@ -22,25 +23,15 @@ public class CourseRepository {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Course> findAllOrderedByName() {
+	public List<Course> findAllOrderedByName(Course course) {
 		Session session = (Session) em.getDelegate();
 		Criteria cb = session.createCriteria(Course.class);
-		return cb.list();
-	}
 
-	@SuppressWarnings("unchecked")
-	public List<Course> findAllOrderedByName2() {
-		Session session = (Session) em.getDelegate();
-		Criteria cb = session.createCriteria(Course.class);
-		List<Course> tmp = cb.list();
-		for (int i = 0; i < tmp.size(); i++) {
-			session.setReadOnly(tmp.get(i), true);
-			em.detach(tmp.get(i));
+		if (course.getCourseName() != null) {
+			cb.add(Restrictions.like("courseName", "%" + course.getCourseName()
+					+ "%"));
 		}
-		// cb.addOrder(Order.asc("name"));
-		// return cb.list();
 
-		// em.close();
-		return tmp;
+		return cb.list();
 	}
 }

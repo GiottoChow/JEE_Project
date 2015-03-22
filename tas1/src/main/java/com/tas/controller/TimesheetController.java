@@ -58,7 +58,7 @@ public class TimesheetController {
 			facesContext.addMessage(null, new FacesMessage(
 					FacesMessage.SEVERITY_INFO, "Successful!", "Successful"));
 			initNewTimesheet();
-			return "course.jsf";
+			return "findTimesheet.jsf";
 		} catch (Exception e) {
 			String errorMessage = getRootErrorMessage(e);
 			facesContext.addMessage(null, new FacesMessage(
@@ -68,21 +68,32 @@ public class TimesheetController {
 		}
 	}
 
-	public String delete() {
+	public void search() {
 		try {
-			timesheetRegistration.delete(newTimesheet);
-
 			facesContext.addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_INFO, "Successful!", "Successful"));
-			initNewTimesheet();
-
-			return "tas1/course.jsf";
+					FacesMessage.SEVERITY_INFO, "Search Complete!",
+					"Search Complete"));
 		} catch (Exception e) {
 			String errorMessage = getRootErrorMessage(e);
 			facesContext.addMessage(null, new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, errorMessage,
 					"Error, unsuccessful"));
-			return "tas1/course.jsf";
+		}
+	}
+
+	public void delete() {
+		try {
+			timesheetRegistration.delete(newTimesheet);
+
+			facesContext.addMessage(null, new FacesMessage(
+					FacesMessage.SEVERITY_INFO, "Delete Successful!",
+					"Successful"));
+			initNewTimesheet();
+		} catch (Exception e) {
+			String errorMessage = getRootErrorMessage(e);
+			facesContext.addMessage(null, new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, errorMessage,
+					"Error, unsuccessful"));
 		}
 	}
 

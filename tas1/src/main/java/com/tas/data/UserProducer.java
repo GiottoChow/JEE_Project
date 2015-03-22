@@ -20,10 +20,18 @@ public class UserProducer {
 
 	private List<User> Users;
 
+	private User searchUser = new User();
+
 	@Produces
 	@Named
 	public List<User> getUsers() {
 		return Users;
+	}
+
+	@Produces
+	@Named
+	public User getSearchUser() {
+		return searchUser;
 	}
 
 	public void onUserListChanged(
@@ -33,6 +41,6 @@ public class UserProducer {
 
 	@PostConstruct
 	public void retrieveAllUsersOrderedByName() {
-		Users = UserRepository.findAllOrderedByName();
+		Users = UserRepository.findAllOrderedByName(searchUser);
 	}
 }

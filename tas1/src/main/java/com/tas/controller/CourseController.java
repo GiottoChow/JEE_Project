@@ -45,12 +45,27 @@ public class CourseController {
 		newCourse = new Course();
 	}
 
-	public void merge() {
+	public String merge() {
 		try {
 			CourseRegistration.merge(newCourse);
 			facesContext.addMessage(null, new FacesMessage(
 					FacesMessage.SEVERITY_INFO, "Successful!", "Successful"));
 			initNewCourse();
+			return "findCourse.jsf";
+		} catch (Exception e) {
+			String errorMessage = getRootErrorMessage(e);
+			facesContext.addMessage(null, new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, errorMessage,
+					"Error, unsuccessful"));
+			return "#";
+		}
+	}
+
+	public void search() {
+		try {
+			facesContext.addMessage(null, new FacesMessage(
+					FacesMessage.SEVERITY_INFO, "Search Complete!",
+					"Search Complete"));
 		} catch (Exception e) {
 			String errorMessage = getRootErrorMessage(e);
 			facesContext.addMessage(null, new FacesMessage(
@@ -63,7 +78,8 @@ public class CourseController {
 		try {
 			CourseRegistration.delete(newCourse);
 			facesContext.addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_INFO, "Successful!", "Successful"));
+					FacesMessage.SEVERITY_INFO, "Delete Successful!",
+					"Successful"));
 			initNewCourse();
 		} catch (Exception e) {
 			String errorMessage = getRootErrorMessage(e);

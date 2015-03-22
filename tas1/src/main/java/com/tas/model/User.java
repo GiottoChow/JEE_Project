@@ -184,4 +184,8 @@ public class User implements java.io.Serializable {
 		return result;
 	}
 
+	public void active() {
+		this.setInactiveDate(null);
+	}
+
 }

@@ -7,8 +7,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import org.hibernate.Criteria;
-import org.hibernate.FlushMode;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import com.tas.model.Timesheet;
 
@@ -23,11 +23,26 @@ public class TimesheetRepository {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Timesheet> findAllOrderedByName() {
+	public List<Timesheet> findAllOrderedByName(Timesheet timesheet) {
 		Session session = (Session) em.getDelegate();
-		session.setFlushMode(FlushMode.AUTO);
 		Criteria cb = session.createCriteria(Timesheet.class);
-		// cb.addOrder(Order.asc("name"));
+
+		if (timesheet.getCourseName() != null) {
+			cb.add(Restrictions.like("courseName",
+					"%" + timesheet.getCourseName() + "%"));
+		}
+		if (timesheet.getUserId() != null) {
+			cb.add(Restrictions.like("userId", "%" + timesheet.getUserId()
+					+ "%"));
+		}
+		if (timesheet.getStartDateTime() != null) {
+			cb.add(Restrictions.ge("startDateTime",
+					timesheet.getStartDateTime()));
+		}
+		if (timesheet.getEndDateTime() != null) {
+			cb.add(Restrictions.le("endDateTime", timesheet.getEndDateTime()));
+		}
+
 		return cb.list();
 	}
 }

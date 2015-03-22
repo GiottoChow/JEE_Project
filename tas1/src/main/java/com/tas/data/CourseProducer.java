@@ -2,6 +2,12 @@ package com.tas.data;
 
 import java.util.List;
 
+//<!-- 		<h:commandButton id="search" -->
+//<!-- 						action="#{findAllCoursesOrderedByName2(testing)}" value="Search" -->
+//<!-- 						styleClass="register" > -->
+//<!-- 						 <f:ajax execute="search" render="courseId"></f:ajax> -->
+//<!-- 						</h:commandButton> -->
+//<!-- CourseProducer		 -->
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Observes;
@@ -20,19 +26,27 @@ public class CourseProducer {
 
 	private List<Course> Courses;
 
+	private Course searchCourse = new Course();
+
 	@Produces
 	@Named
 	public List<Course> getCourses() {
 		return Courses;
 	}
 
+	@Produces
+	@Named
+	public Course getSearchCourse() {
+		return searchCourse;
+	}
+
 	public void onCourseListChanged(
 			@Observes(notifyObserver = Reception.IF_EXISTS) final Course Course) {
-		retrieveAllCoursesOrderedByName();
+		findAllCoursesOrderedByName();
 	}
 
 	@PostConstruct
-	public void retrieveAllCoursesOrderedByName() {
-		Courses = CourseRepository.findAllOrderedByName();
+	public void findAllCoursesOrderedByName() {
+		Courses = CourseRepository.findAllOrderedByName(searchCourse);
 	}
 }

@@ -20,10 +20,18 @@ public class TimesheetProducer {
 
 	private List<Timesheet> Timesheets;
 
+	private Timesheet searchTimesheet = new Timesheet();
+
 	@Produces
 	@Named
 	public List<Timesheet> getTimesheets() {
 		return Timesheets;
+	}
+
+	@Produces
+	@Named
+	public Timesheet getSearchTimesheet() {
+		return searchTimesheet;
 	}
 
 	public void onTimeshetListChanged(
@@ -33,6 +41,6 @@ public class TimesheetProducer {
 
 	@PostConstruct
 	public void retrieveAllTimesheetsOrderedByName() {
-		Timesheets = TimeshetRepository.findAllOrderedByName();
+		Timesheets = TimeshetRepository.findAllOrderedByName(searchTimesheet);
 	}
 }
