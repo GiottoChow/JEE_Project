@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+		<h2>List of users</h2>
+		<h:panelGroup rendered="#{empty users}">
+			<em>No registered users.</em>
+		</h:panelGroup>
+		<h:dataTable var="_user" value="#{users}"
+			rendered="#{not empty users}" styleClass="simpletablestyle">
+			<h:column>
+				<f:facet name="header">User Id</f:facet>
+                #{_user.userId}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Alias</f:facet>
+                #{_user.alias}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Role</f:facet>
+                #{_user.roleId}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Login Trail</f:facet>
+                #{_user.loginTrial}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Mobile</f:facet>
+                #{_user.mobile}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Email</f:facet>
+                #{_user.email}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Inactive Date</f:facet>
+                #{_user.inactiveDate}
+            </h:column>
+		</h:dataTable>
+
+	</ui:define>
+</ui:composition>

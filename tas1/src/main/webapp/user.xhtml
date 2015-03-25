@@ -7,7 +7,7 @@
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
-		<h:form id="create">
+		
 			<h2>User Registration</h2>
 			<h:panelGrid columns="1" columnClasses="titleCell">
 
@@ -62,44 +62,10 @@
 						infoClass="valid" warnClass="warning" globalOnly="true" />
 				</h:panelGrid>
 			</p>
-		</h:form>
+		
 
 
-		<h2>List of users</h2>
-		<h:panelGroup rendered="#{empty users}">
-			<em>No registered users.</em>
-		</h:panelGroup>
-		<h:dataTable var="_user" value="#{users}"
-			rendered="#{not empty users}" styleClass="simpletablestyle">
-			<h:column>
-				<f:facet name="header">User Id</f:facet>
-                #{_user.userId}
-            </h:column>
-			<h:column>
-				<f:facet name="header">Alias</f:facet>
-                #{_user.alias}
-            </h:column>
-			<h:column>
-				<f:facet name="header">Role</f:facet>
-                #{_user.roleId}
-            </h:column>
-			<h:column>
-				<f:facet name="header">Login Trail</f:facet>
-                #{_user.loginTrial}
-            </h:column>
-			<h:column>
-				<f:facet name="header">Mobile</f:facet>
-                #{_user.mobile}
-            </h:column>
-			<h:column>
-				<f:facet name="header">Email</f:facet>
-                #{_user.email}
-            </h:column>
-			<h:column>
-				<f:facet name="header">Inactive Date</f:facet>
-                #{_user.inactiveDate}
-            </h:column>
-		</h:dataTable>
+	
 
 	</ui:define>
 

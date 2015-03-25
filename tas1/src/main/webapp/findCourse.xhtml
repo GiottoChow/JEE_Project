@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+	
+		<h2>List of course</h2>
+		<h:panelGroup rendered="#{empty courses}">
+			<em>No registered courses.</em>
+		</h:panelGroup>
+		<h:dataTable var="_course" value="#{courses}"
+			rendered="#{not empty courses}" styleClass="simpletablestyle">
+			<h:column>
+				<f:facet name="header">Course Name</f:facet>
+                #{_course.courseName}
+            </h:column>
+		</h:dataTable>
+	</ui:define>
+</ui:composition>

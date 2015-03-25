@@ -19,7 +19,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<title>hibernate4</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -36,42 +37,52 @@
 	</script>
 </h:head>
 <h:body>
+	<h:form>
+		<div style="width: 100%;">
 
-	<div style="width: 100%;">
-		<div id="cssmenu" style="float: left; width: 20%;">
+			<div id="cssmenu" style="float: left; width: 20%;">
 
-			<ul>
-				<li class="active"><a href="index.html"><span>Home</span></a></li>
-				<li class="has-sub"><a href="#"><span>Course</span></a>
-					<ul>
-						<li><a href="#"><span>Search</span></a></li>
-						<li><a href="./course.jsf"><span>Create</span></a></li>
-						<li class="last"><a href="#"><span>Edit</span></a></li>
-					</ul></li>
-				<li class="has-sub"><a href="#"><span>User</span></a>
-					<ul>
-						<li><a href="#"><span>Search</span></a></li>
-						<li><a href="./user.jsf"><span>Create</span></a></li>
-						<li class="last"><a href="#"><span>Edit</span></a></li>
-					</ul></li>
-				<li class="has-sub last"><a href="#"><span>Timesheet</span></a>
-					<ul>
-						<li><a href="#"><span>Search</span></a></li>
-						<li><a href="#"><span>Create</span></a></li>
-						<li class="last"><a href="#"><span>Edit</span></a></li>
-					</ul></li>
-				<li class="active"><a href="#"><span>Logout</span></a></li>
-			</ul>
 
-		</div>
-		<div style="float: right; width: 80%;">
-			<div style="margin-left: 10%">
-				<ui:insert name="content" />
+				<ul>
+					<li class="active"><a href="index.html"><span>Home</span></a></li>
+					<li class="has-sub"><a href="#"><span>Course</span></a>
+						<ul>
+							<li>
+							<a href="./findCourse.jsf"><span>Search</span></a></li>
+							<li><a href="./course.jsf"><span>Create</span></a></li>
+							<li class="last"><a href="./course.jsf"><span>Edit</span></a></li>
+						</ul></li>
+					<li class="has-sub"><a href="#"><span>User</span></a>
+						<ul>
+							<li><a href="./findUser.jsf"><span>Search</span></a></li>
+							<li><a href="./user.jsf"><span>Create</span></a></li>
+							<li class="last"><a href="#"><span>Edit</span></a></li>
+						</ul></li>
+					<li class="has-sub last"><a href="#"><span>Timesheet</span></a>
+						<ul>
+							<li><a href="#"><span>Search</span></a></li>
+							<li><a href="#"><span>Create</span></a></li>
+							<li class="last"><a href="#"><span>Edit</span></a></li>
+						</ul></li>
+					<li class="active"><a href="#"><span>Logout</span></a></li>
+				</ul>
+
+
+
 			</div>
+			<div style="float: right; width: 80%;">
+				<div style="margin-left: 10%">
+
+
+					<h:panelGroup id="maincontent">
+						<ui:insert name="content"></ui:insert>
+					</h:panelGroup>
+
+				</div>
+			</div>
+
+
 		</div>
-
-
-	</div>
-
+	</h:form>
 </h:body>
 </html>
