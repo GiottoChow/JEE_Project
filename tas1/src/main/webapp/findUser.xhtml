@@ -25,10 +25,6 @@
                 #{_user.roleId}
             </h:column>
 			<h:column>
-				<f:facet name="header">Login Trail</f:facet>
-                #{_user.loginTrial}
-            </h:column>
-			<h:column>
 				<f:facet name="header">Mobile</f:facet>
                 #{_user.mobile}
             </h:column>
@@ -36,10 +32,24 @@
 				<f:facet name="header">Email</f:facet>
                 #{_user.email}
             </h:column>
-			<h:column>
-				<f:facet name="header">Inactive Date</f:facet>
-                #{_user.inactiveDate}
+			
+            <h:column>
+				<f:facet name="header"></f:facet>
+				<h:form><h:commandLink value="Edit" action="#{userController.navToEdit(_user)}" /></h:form>                     
             </h:column>
+            
+            <h:column>
+				<f:facet name="header"></f:facet>
+				<h:form>         
+            	<h:commandLink value="Delete" action="#{userController.delete}" >
+            	  <f:setPropertyActionListener 
+                     target="#{userController.newUser}" value="#{_user}" />
+              
+            	</h:commandLink>
+            	</h:form>
+            </h:column>
+            
+           
 		</h:dataTable>
 
 	</ui:define>

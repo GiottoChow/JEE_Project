@@ -21,10 +21,28 @@ public class CourseController {
 
 	private Course newCourse;
 
+	private boolean isEdit = false;
+
+	@Named
+	public boolean isEdit() {
+		return isEdit;
+	}
+
+	@Named
+	public void setNewCourse(Course course) {
+		newCourse = course;
+		;
+	}
+
 	@Produces
 	@Named
 	public Course getNewCourse() {
 		return newCourse;
+	}
+
+	@PostConstruct
+	public void initNewCourse() {
+		newCourse = new Course();
 	}
 
 	private String getRootErrorMessage(Exception e) {
@@ -40,9 +58,11 @@ public class CourseController {
 		return errorMessage;
 	}
 
-	@PostConstruct
-	public void initNewCourse() {
-		newCourse = new Course();
+	@Named
+	public String navToEdit(Course course) {
+		newCourse = course;
+		isEdit = true;
+		return "course.jsf";
 	}
 
 	public String merge() {
@@ -61,32 +81,17 @@ public class CourseController {
 		}
 	}
 
-	public void search() {
-		try {
-			facesContext.addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_INFO, "Search Complete!",
-					"Search Complete"));
-		} catch (Exception e) {
-			String errorMessage = getRootErrorMessage(e);
-			facesContext.addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR, errorMessage,
-					"Error, unsuccessful"));
-		}
-	}
-
 	public void delete() {
 		try {
 			CourseRegistration.delete(newCourse);
 			facesContext.addMessage(null, new FacesMessage(
 					FacesMessage.SEVERITY_INFO, "Delete Successful!",
 					"Successful"));
-			initNewCourse();
 		} catch (Exception e) {
 			String errorMessage = getRootErrorMessage(e);
 			facesContext.addMessage(null, new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, errorMessage,
 					"Error, unsuccessful"));
-
 		}
 	}
 }

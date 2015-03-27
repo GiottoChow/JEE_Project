@@ -10,7 +10,6 @@ import javax.persistence.EntityManager;
 import org.hibernate.Session;
 
 import com.tas.model.Timesheet;
-import com.tas.model.TimesheetId;
 
 @Stateless
 public class TimesheetRegistration {
@@ -25,24 +24,20 @@ public class TimesheetRegistration {
 	private Event<Timesheet> TimesheetEventSrc;
 
 	public void merge(Timesheet timesheet) throws Exception {
-		log.info("Merge " + timesheet.getUserId() + "@"
-				+ timesheet.getCourseName() + "@"
-				+ timesheet.getStartDateTime().getTime());
+		log.info("Merge " + timesheet.getTId());
 		Session session = (Session) em.getDelegate();
 		session.merge(timesheet);
 		TimesheetEventSrc.fire(timesheet);
 	}
 
 	public void delete(Timesheet timesheet) throws Exception {
-		log.info("Delete " + timesheet.getUserId() + "@"
-				+ timesheet.getCourseName() + "@"
-				+ timesheet.getStartDateTime().getTime());
+		log.info("Delete " + timesheet.getTId());
 
 		Session session = (Session) em.getDelegate();
 
-		TimesheetId x = new TimesheetId(timesheet.getUserId(),
-				timesheet.getCourseName(), timesheet.getStartDateTime());
-		Timesheet y = em.getReference(Timesheet.class, x);
+		// TimesheetId x = new TimesheetId(timesheet.getUserId(),
+		// timesheet.getCourseName(), timesheet.getStartDateTime());
+		Timesheet y = em.getReference(Timesheet.class, timesheet.getTId());
 		session.delete(y);
 
 		TimesheetEventSrc.fire(timesheet);

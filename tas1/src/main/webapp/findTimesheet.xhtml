@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib">
+	<ui:define name="content">
+				
+					
+		<h2><h:outputLabel for="title" value="#{sessionScope.user.alias}" />'s Timesheet</h2>
+		<h:panelGroup rendered="#{empty timesheets}">
+			<em>No record found.</em>
+		</h:panelGroup>
+		<h:dataTable var="_timesheet" value="#{timesheets}"
+			rendered="#{not empty timesheets}" styleClass="simpletablestyle">
+			
+			
+			
+			<h:column><h:inputHidden value="#{_timesheet.TId}" id="TIdX" />
+			
+            </h:column>
+			<h:column>
+				<f:facet name="header">User Id</f:facet>
+                #{_timesheet.userId}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Course</f:facet>
+                #{_timesheet.courseName}
+            </h:column>
+            <h:column>
+				<f:facet name="header">Start Date Time</f:facet>
+                #{_timesheet.startDateTime}
+            </h:column>
+            <h:column>
+				<f:facet name="header">End Date Time</f:facet>
+                #{_timesheet.endDateTime}
+            </h:column>
+            
+            <h:column>
+				<f:facet name="header"></f:facet>
+				<h:form><h:commandLink value="Edit" action="#{timesheetController.navToEdit(_timesheet)}" /></h:form>                     
+            </h:column>
+            
+            <h:column>
+				<f:facet name="header"></f:facet>
+				<h:form>         
+            	<h:commandLink value="Delete" action="#{timesheetController.delete}" >
+            	  <f:setPropertyActionListener 
+                     target="#{timesheetController.newTimesheet}" value="#{_timesheet}" />
+              
+            	</h:commandLink>
+            	</h:form>
+            </h:column>
+		</h:dataTable>
+
+	</ui:define>
+
+</ui:composition>

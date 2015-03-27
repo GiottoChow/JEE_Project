@@ -18,8 +18,8 @@ public class UserRepository {
 	@Inject
 	private EntityManager em;
 
-	public User findById(Long id) {
-		return em.find(User.class, id);
+	public User findById(String userId) {
+		return em.find(User.class, userId);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -41,12 +41,6 @@ public class UserRepository {
 		}
 		if (user.getRoleId() != null) {
 			cb.add(Restrictions.like("roleId", "%" + user.getRoleId() + "%"));
-		}
-		if (user.getLoginTrial() != null) {
-			cb.add(Restrictions.eqOrIsNull("loginTrial", user.getLoginTrial()));
-		}
-		if (user.getInactiveDate() != null) {
-			cb.add(Restrictions.lt("inactiveDate", user.getInactiveDate()));
 		}
 		return cb.list();
 	}

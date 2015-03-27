@@ -12,6 +12,7 @@ import javax.inject.Named;
 
 import com.tas.model.Timesheet;
 
+@Named
 @RequestScoped
 public class TimesheetProducer {
 
@@ -28,7 +29,6 @@ public class TimesheetProducer {
 		return Timesheets;
 	}
 
-	@Produces
 	@Named
 	public Timesheet getSearchTimesheet() {
 		return searchTimesheet;
@@ -42,5 +42,10 @@ public class TimesheetProducer {
 	@PostConstruct
 	public void retrieveAllTimesheetsOrderedByName() {
 		Timesheets = TimeshetRepository.findAllOrderedByName(searchTimesheet);
+		// List<Timesheet> tmpLst = new ArrayList<Timesheet>(Timesheets);
+		//
+		// for (int i = 0; i < Timesheets.size(); i++) {
+		// Timesheets.get(i);
+		// }
 	}
 }

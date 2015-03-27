@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
-		
+	<h:form>      		
 			<h2>Establish a new course</h2>
 			<h:panelGrid columns="3" columnClasses="titleCell">
 				<h:outputLabel for="courseName" value="Course Name*:" />
@@ -23,7 +23,7 @@
 						infoClass="valid" warnClass="warning" globalOnly="true" />
 				</h:panelGrid>
 			</p>
-	
+	</h:form>      
 
 	</ui:define>
 </ui:composition>

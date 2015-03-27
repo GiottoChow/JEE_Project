@@ -1,8 +1,5 @@
 package com.tas.model;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -38,23 +35,19 @@ public class User implements java.io.Serializable {
 	@Size(min = 8, max = 25)
 	@Digits(fraction = 0, integer = 25)
 	private String mobile;
-	private Date inactiveDate;
-	private BigDecimal loginTrial;
 	private String alias;
+	private String lastSessionId;
 
 	public User() {
 	}
 
 	public User(String userId, String passwd, String roleId, String email,
-			String mobile, Date inactiveDate, BigDecimal loginTrial,
-			String alias) {
+			String mobile, String alias) {
 		this.userId = userId;
 		this.passwd = passwd;
 		this.roleId = roleId;
 		this.email = email;
 		this.mobile = mobile;
-		this.inactiveDate = inactiveDate;
-		this.loginTrial = loginTrial;
 		this.alias = alias;
 	}
 
@@ -98,28 +91,20 @@ public class User implements java.io.Serializable {
 		this.mobile = mobile;
 	}
 
-	public Date getInactiveDate() {
-		return this.inactiveDate;
-	}
-
-	public void setInactiveDate(Date inactiveDate) {
-		this.inactiveDate = inactiveDate;
-	}
-
-	public BigDecimal getLoginTrial() {
-		return this.loginTrial;
-	}
-
-	public void setLoginTrial(BigDecimal loginTrial) {
-		this.loginTrial = loginTrial;
-	}
-
 	public String getAlias() {
 		return this.alias;
 	}
 
 	public void setAlias(String alias) {
 		this.alias = alias;
+	}
+
+	public String getLastSessionId() {
+		return this.lastSessionId;
+	}
+
+	public void setLastSessionId(String lastSessionId) {
+		this.lastSessionId = lastSessionId;
 	}
 
 	@Override
@@ -144,14 +129,11 @@ public class User implements java.io.Serializable {
 				&& ((this.getMobile() == castOther.getMobile()) || (this
 						.getMobile() != null && castOther.getMobile() != null && this
 						.getMobile().equals(castOther.getMobile())))
-				&& ((this.getInactiveDate() == castOther.getInactiveDate()) || (this
-						.getInactiveDate() != null
-						&& castOther.getInactiveDate() != null && this
-						.getInactiveDate().equals(castOther.getInactiveDate())))
-				&& ((this.getLoginTrial() == castOther.getLoginTrial()) || (this
-						.getLoginTrial() != null
-						&& castOther.getLoginTrial() != null && this
-						.getLoginTrial().equals(castOther.getLoginTrial())))
+				&& ((this.getLastSessionId() == castOther.getLastSessionId()) || (this
+						.getLastSessionId() != null
+						&& castOther.getLastSessionId() != null && this
+						.getLastSessionId()
+						.equals(castOther.getLastSessionId())))
 				&& ((this.getAlias() == castOther.getAlias()) || (this
 						.getAlias() != null && castOther.getAlias() != null && this
 						.getAlias().equals(castOther.getAlias())));
@@ -173,19 +155,11 @@ public class User implements java.io.Serializable {
 				+ (getMobile() == null ? 0 : this.getMobile().hashCode());
 		result = 37
 				* result
-				+ (getInactiveDate() == null ? 0 : this.getInactiveDate()
-						.hashCode());
-		result = 37
-				* result
-				+ (getLoginTrial() == null ? 0 : this.getLoginTrial()
+				+ (getLastSessionId() == null ? 0 : this.getLastSessionId()
 						.hashCode());
 		result = 37 * result
 				+ (getAlias() == null ? 0 : this.getAlias().hashCode());
 		return result;
-	}
-
-	public void active() {
-		this.setInactiveDate(null);
 	}
 
 }

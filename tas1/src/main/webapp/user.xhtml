@@ -7,25 +7,30 @@
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="content">
-		
+		<h:form>
+				
 			<h2>User Registration</h2>
 			<h:panelGrid columns="1" columnClasses="titleCell">
 
-				<h:outputLabel for="userId" value="User Id*:" />
-				<h:inputText id="userId" value="#{newUser.userId}">
+				<h:outputLabel for="userId" value="User Id*:"/>
+				<h:inputText id="userId" value="#{newUser.userId}" readonly="#{userController.edit}" >
 					<f:validateRequired />
 				</h:inputText>
-				<h:message for="userId" errorClass="invalid" />
+
+				<h:message for="userId" errorClass="invalid"  rendered="#{not userController.edit}"/>
 
 				<h:outputLabel for="alias" value="Alias:" />
 				<h:inputText id="alias" value="#{newUser.alias}">
 				</h:inputText>
 				<h:message for="alias" errorClass="invalid" />
 
+
 				<h:outputLabel for="role" value="Role*:" />
-				<h:inputText id="role" value="#{newUser.roleId}">
-					<f:validateRequired />
-				</h:inputText>
+				<h:selectOneMenu id="role" value="#{newUser.roleId}">
+					<f:selectItem itemValue="Customer" itemLabel="Customer"/>
+					<f:selectItem itemValue="Teacher" itemLabel="Teacher"/>
+					<f:selectItem itemValue="Equipment" itemLabel="Equipment"/>
+				</h:selectOneMenu>
 				<h:message for="role" errorClass="invalid" />
 
 				<h:outputLabel for="passwd" value="Password*:" />
@@ -40,31 +45,24 @@
 
 				<h:outputLabel for="email" value="Email:*" />
 				<h:inputText id="email" p:type="email" value="#{newUser.email}" />
-
 				<h:message for="email" errorClass="invalid" />
-
-				<!-- 				<h:outputLabel for="inactiveDate" value="inactiveDate:" /> -->
-				<!-- 				<h:inputText id="inactiveDate" value="#{newUser.inactiveDate}" /> -->
-				<!-- 				<h:message for="inactiveDate" errorClass="invalid" /> -->
-
-				<!-- 				<h:outputLabel for="loginTrial" value="loginTrial:" /> -->
-				<!-- 				<h:inputText id="loginTrial" value="#{newUser.loginTrial}" /> -->
-				<!-- 				<h:message for="loginTrial" errorClass="invalid" /> -->
 
 			</h:panelGrid>
 
 			<p>
 				<h:panelGrid columns="2">
 					<h:commandButton id="create" action="#{userController.merge}"
-						value="Create" styleClass="register" />
-
+						value="Create" styleClass="register" rendered="#{not userController.edit}"/>
+					<h:commandButton id="update" action="#{userController.merge}"
+						value="Update" styleClass="register" rendered="#{userController.edit}"/>
+		
 					<h:messages styleClass="messages" errorClass="invalid"
 						infoClass="valid" warnClass="warning" globalOnly="true" />
 				</h:panelGrid>
 			</p>
 		
 
-
+		</h:form>      
 	
 
 	</ui:define>

@@ -3,46 +3,37 @@ package com.tas.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@IdClass(TimesheetId.class)
 @XmlRootElement
-@Table(name = "Timesheet", uniqueConstraints = @UniqueConstraint(columnNames = {
-		"userId", "courseName", "startDateTime" }))
+@Table(name = "Timesheet", uniqueConstraints = @UniqueConstraint(columnNames = { "tid" }))
 public class Timesheet implements java.io.Serializable {
 
 	private static final long serialVersionUID = -3582673343379994170L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private String tid;
 	private String userId;
-
-	@Id
 	private String courseName;
-
-	@Id
 	private Date startDateTime;
 	private Date endDateTime;
 
 	public Timesheet() {
 	}
 
-	public Timesheet(String userId, String courseName, Date startDateTime) {
-		this.userId = userId;
-		this.courseName = courseName;
-		this.startDateTime = startDateTime;
+	public String getTId() {
+		return tid;
 	}
 
-	public Timesheet(String userId, String courseName, Date startDateTime,
-			Date endDateTime) {
-		this.userId = userId;
-		this.courseName = courseName;
-		this.startDateTime = startDateTime;
-		this.endDateTime = endDateTime;
+	public void setTId(String tid) {
+		this.tid = tid;
 	}
 
 	public String getUserId() {
@@ -87,9 +78,12 @@ public class Timesheet implements java.io.Serializable {
 			return false;
 		Timesheet castOther = (Timesheet) other;
 
-		return ((this.getUserId() == castOther.getUserId()) || (this
-				.getUserId() != null && castOther.getUserId() != null && this
-				.getUserId().equals(castOther.getUserId())))
+		return ((this.getTId() == castOther.getTId()) || (this.getTId() != null
+				&& castOther.getTId() != null && this.getTId().equals(
+				castOther.getTId())))
+				&& ((this.getUserId() == castOther.getUserId()) || (this
+						.getUserId() != null && castOther.getUserId() != null && this
+						.getUserId().equals(castOther.getUserId())))
 				&& ((this.getCourseName() == castOther.getCourseName()) || (this
 						.getCourseName() != null
 						&& castOther.getCourseName() != null && this
@@ -111,7 +105,11 @@ public class Timesheet implements java.io.Serializable {
 		int result = 17;
 
 		result = 37 * result
+				+ (getTId() == null ? 0 : this.getTId().hashCode());
+
+		result = 37 * result
 				+ (getUserId() == null ? 0 : this.getUserId().hashCode());
+
 		result = 37
 				* result
 				+ (getCourseName() == null ? 0 : this.getCourseName()

@@ -23,20 +23,40 @@ public class UserRegistration {
 	@Inject
 	private Event<User> userEventSrc;
 
-	public void merge(User user) throws Exception {
-		log.info("Merge " + user.getUserId());
+	public void add(User user) {
+		log.info("Add " + user.getUserId());
+
+		Session session = (Session) em.getDelegate();
+		session.persist(user);
+		userEventSrc.fire(user);
+	}
+
+	public void merge(User user) {
+		log.info("Add " + user.getUserId());
 
 		Session session = (Session) em.getDelegate();
 		session.merge(user);
 		userEventSrc.fire(user);
 	}
 
-	public void delete(User user) throws Exception {
-		log.info("Merge " + user.getUserId());
+	public void modify(User from, User to) {
+		log.info("Modify " + from.getUserId());
 
 		Session session = (Session) em.getDelegate();
-		session.delete(user);
-		userEventSrc.fire(user);
+		User targetUser = em.getReference(User.class, from.getUserId());
+		em.remove(targetUser);
+		userEventSrc.fire(from);
+
+		session.persist(to);
+		userEventSrc.fire(to);
+	}
+
+	public void delete(User user) {
+		log.info("Delete " + user.getUserId());
+
+		User targetUser = em.getReference(User.class, user.getUserId());
+		em.remove(targetUser);
+		userEventSrc.fire(targetUser);
 	}
 
 }

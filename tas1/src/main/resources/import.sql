@@ -1,29 +1,15 @@
---
--- JBoss, Home of Professional Open Source
--- Copyright 2014, Red Hat, Inc. and/or its affiliates, and individual
--- contributors by the @authors tag. See the copyright.txt in the
--- distribution for a full listing of individual contributors.
---
--- Licensed under the Apache License, Version 2.0 (the "License");
--- you may not use this file except in compliance with the License.
--- You may obtain a copy of the License at
--- http://www.apache.org/licenses/LICENSE-2.0
--- Unless required by applicable law or agreed to in writing, software
--- distributed under the License is distributed on an "AS IS" BASIS,
--- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
--- See the License for the specific language governing permissions and
--- limitations under the License.
---
-
--- You can use this file to load seed data into the database using SQL statements
---insert into MemberHibernate4Demo (myId, name, email, phone_number, address) values (0, 'John Smith', 'john.smith@mailinator.com', '2125551212', 'Boston NY') 
---insert into MemberHibernate4Demo (myId, name, email, phone_number, address) values (1, 'Madhumita Sadhukhan', 'msadhukh@gmail.com', '2135551214', 'Brno CZ') 
---insert into Role(name,desc) values ('admin','test')
--- insert into MemberRole(name_name) values ('admin');
-
-insert into Course values ('A');
-insert into Course values ('B');
-insert into Course values ('C');
-insert into User values ('Admin','Administrator','user@giotto-PC',null, 0, '1212121212121', 'password','Admin');
-insert into User values ('Admin1','Administrator','user@giotto-PC',null, 0, '1212121212121', 'password','Admin');
-insert into User values ('Admin2','Administrator','user@giotto-PC',null, 0, '1212121212121', 'password','Admin');
+insert into Course values ('Hades style, drive in practical');
+insert into Course values ('No way back in advanced');
+insert into Course values ('Road to sparta brave warrior');
+insert into User values ('c03k11','Kai Son','c03k11@gmail.com', null, '68887888', 'password','Teacher');
+insert into User values ('giottcww','Giotto','giotto.chow@gmail.com', null, '86633851212', 'password','Customer');
+insert into User values ('dudleychong','Ar Wai','dudleychong@gmail.com', null, '00001637019', 'password','Equipment');
+insert into Timesheet values('1','No way back in advanced','2015-03-12 11:12:01','2015-03-22 15:12:01','c03k11');
+insert into Timesheet values('2','No way back in advanced','2015-03-13 11:12:01','2015-03-22 15:12:01','c03k11');
+insert into Timesheet values('3','No way back in advanced','2015-03-14 11:12:01','2015-03-22 15:12:01','c03k11');
+insert into Timesheet values('4','No way back in advanced','2015-03-15 11:12:01','2015-03-22 15:12:01','c03k11');
+insert into Timesheet values('5','No way back in advanced','2015-03-16 11:12:01','2015-03-22 15:12:01','c03k11');
+insert into Timesheet values('6','No way back in advanced','2015-03-17 11:12:01','2015-03-22 15:12:01','c03k11');
+insert into Timesheet values('7','No way back in advanced','2015-03-18 11:12:01','2015-03-22 15:12:01','c03k11');
+insert into Timesheet values('8','No way back in advanced','2015-03-19 11:12:01','2015-03-22 15:12:01','c03k11');
+insert into Timesheet values('9','No way back in advanced','2015-03-22 11:12:01','2015-03-22 15:12:01','c03k11');

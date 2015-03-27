@@ -18,6 +18,7 @@ import javax.inject.Named;
 
 import com.tas.model.Course;
 
+@Named
 @RequestScoped
 public class CourseProducer {
 
@@ -34,7 +35,6 @@ public class CourseProducer {
 		return Courses;
 	}
 
-	@Produces
 	@Named
 	public Course getSearchCourse() {
 		return searchCourse;
@@ -49,4 +49,5 @@ public class CourseProducer {
 	public void findAllCoursesOrderedByName() {
 		Courses = CourseRepository.findAllOrderedByName(searchCourse);
 	}
+
 }

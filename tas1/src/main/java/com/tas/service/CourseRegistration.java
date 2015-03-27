@@ -34,8 +34,10 @@ public class CourseRegistration {
 	public void delete(Course Course) throws Exception {
 		log.info("Delete " + Course.getCourseName());
 
-		Session session = (Session) em.getDelegate();
-		session.delete(Course);
-		CourseEventSrc.fire(Course);
+		Course targetCourse = em.getReference(Course.class,
+				Course.getCourseName());
+		em.remove(targetCourse);
+		// session.delete(targetCourse);
+		CourseEventSrc.fire(targetCourse);
 	}
 }
